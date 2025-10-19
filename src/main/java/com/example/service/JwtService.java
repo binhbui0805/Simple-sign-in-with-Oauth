@@ -4,6 +4,8 @@ import com.example.utils.PemUtils;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.SignatureException;
+
+import java.math.BigInteger;
 import java.security.interfaces.RSAPrivateKey;
 import java.time.Instant;
 import java.util.Date;
@@ -23,7 +25,7 @@ public class JwtService {
         Instant now = Instant.now();
         return Jwts.builder()
                 .setHeaderParam("typ", "JWT")
-                .setIssuer("https://localhost:8080")           // set your issuer
+                .setIssuer("https://localhost:9090")           // set your issuer
                 .setSubject(subject)
                 .addClaims(Map.of("authorities", new String[]{role}))
                 .setIssuedAt(Date.from(now))

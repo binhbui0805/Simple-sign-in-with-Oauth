@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: demo
+  datasource:
+    url: ########
+    username: #######
+    password: #######
+    driver-class-name: org.postgresql.Driver
+server:
+  port: 9090
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
