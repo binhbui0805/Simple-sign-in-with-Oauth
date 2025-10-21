@@ -1,9 +1,12 @@
 package com.example.service;
 
+import com.example.model.UserEntity;
 import com.example.repository.UserRepository;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
 
 @Service
 public class AuthService {
@@ -25,5 +28,19 @@ public class AuthService {
             throw new BadCredentialsException("Invalid username or password");
         }
         return jwt.generateToken(user.getUsername(), user.getRole());
+    }
+
+    public void register(String username, char[] rawPassword) {
+
+
+        String hash = encoder.encode(new String(rawPassword));
+        Arrays.fill(rawPassword, '\0'); // wipe ASAP
+
+        var u = new UserEntity();
+        u.setUsername(username);
+        u.setPasswordHash(hash);
+        u.setRole("ROLE_USER");
+        users.save(u);
+
     }
 }
