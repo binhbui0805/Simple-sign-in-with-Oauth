@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: demo
+  datasource:
+    url: #####
+    username: ######
+    password: #####
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+server:
+  port: 9090
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
